@@ -42,3 +42,33 @@ Route::post('create' , function(){
     return view('tests');
 });
 
+Route :: post ('delete/{id}',function($id){
+
+  DB:: table('tests')->where('id',$id)->delete();
+
+  return redirect()->back();
+
+
+});
+
+Route :: post ('edit/{id}',function($id){
+
+    $test = DB :: table ('tests')->where('id',$id)->first();
+    $tests = DB :: table('tests')-> get();
+    return view('tests',compact('test','tests'));
+
+
+});
+
+
+Route :: post('update',function(){
+
+    $id = $_POST['id'];
+
+    DB:: table('tests')->where('id','=',$id)->update(['name'=>$_POST['name']]);
+
+    return redirect('tests');
+
+
+
+});
