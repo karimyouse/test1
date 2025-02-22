@@ -32,3 +32,13 @@ Route::post('/about' , function(){
 
 });
 
+Route::get('tests' , function(){
+    return view('tests');
+});
+
+Route::post('create' , function(){
+    $task_name = $_POST['name'];
+    DB::table('tests')->insert(['name' => $task_name]);
+    return view('tests');
+});
+
