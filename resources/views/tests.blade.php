@@ -20,16 +20,11 @@
         }
     </style>
 </head>
-<body id="app-layout">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                Task List
-            </a>
-        </div>
-    </nav>
-
-    <div class="container mt-4">
+     
+@extends('layouts.app')
+@section('content')
+<div class="container mt-4">
+    <h1>Task List App</h1>
         <div class="offset-md-2 col-md-8">
             <div class="card">
                 @if(isset($test))
@@ -148,8 +143,6 @@
         </div>
     </div>
 
-    <!-- JavaScripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
-
+@endsection
+    
+    
