@@ -1,11 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TestController;
 
 Route::get('/', function () {
     return view('welcome');
 });
-/////////////////////////////////////
+
 
 Route::get('/about' , function(){
     $name = 'Karim';
@@ -14,8 +15,7 @@ Route::get('/about' , function(){
         '2' => 'Finacial' ,
         '3' => 'Seles' ,
     ];
-    //return view('about') -> with (key: 'name' , value: $name);
-   // return view('about' , data: ['name' => $name]);   array
+    
    return view('about' , data: compact('name' , 'departs'));
 
 });
@@ -32,43 +32,23 @@ Route::post('/about' , function(){
 
 });
 
-Route::get('tests' , function(){
-    return view('tests');
-});
+Route::get('tests' , [TestController::class, 'index']);
 
-Route::post('create' , function(){
-    $task_name = $_POST['name'];
-    DB::table('tests')->insert(['name' => $task_name]);
-    return view('tests');
-});
+Route::post('create' , [TestController::class, 'create']);
 
-Route :: post ('delete/{id}',function($id){
+Route :: post ('delete/{id}',[TestController::class,'destroy']);
 
-  DB:: table('tests')->where('id',$id)->delete();
-
-  return redirect()->back();
+Route :: post ('edit/{id}', [TestController::class,'edit']);
 
 
-});
+Route :: post('update',[TestController::class,'update']);
 
-Route :: post ('edit/{id}',function($id){
+Route :: get('app',function(){
+    return view('layouts.app');
+} );
 
-    $test = DB :: table ('tests')->where('id',$id)->first();
-    $tests = DB :: table('tests')-> get();
-    return view('tests',compact('test','tests'));
-
-
-});
-
-
-Route :: post('update',function(){
-
-    $id = $_POST['id'];
-
-    DB:: table('tests')->where('id','=',$id)->update(['name'=>$_POST['name']]);
-
-    return redirect('tests');
-
-
-
-});
+Route::get('users',[UserController::class,'index']);
+Route::post('create',[UserController::class,'create']);
+Route::post('delete/{id}',[UserController::class,'destroy']);
+Route::post('edit/{id}',[UserController::class,'edit']);
+Route::post('update',[UserController::class,'update']);
