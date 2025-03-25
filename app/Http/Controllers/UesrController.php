@@ -49,7 +49,7 @@ class UserController extends Controller
      }*/
 
     public function destroy($id){
-        // DB::table('users')->where('id' , $id)->delete();
+         DB::table('users')->where('id' , $id)->delete();
         $user = User::find($id);
         $user->delete();
 
@@ -57,8 +57,8 @@ class UserController extends Controller
     }
 
     public function edit($id){
-        // $user = DB::table('users')->where('id' , $id)->first();
-        // $users = DB::table('users')->get();
+         $user = DB::table('users')->where('id' , $id)->first();
+         $users = DB::table('users')->get();
         $user = User::find($id);
         $users = User::all();
 
