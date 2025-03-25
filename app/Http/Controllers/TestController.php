@@ -4,7 +4,6 @@
  
  use Illuminate\Http\Request;
  use Illuminate\Support\Facades\DB;
- use App\Models\Task;
  
  
  class TaskController extends Controller
